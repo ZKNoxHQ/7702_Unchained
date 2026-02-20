@@ -15,7 +15,7 @@ Open [http://localhost:3000](http://localhost:3000) in Chrome.
 ## Requirements
 
 - **Chrome** (WebHID support required for Ledger tabs)
-- A Ledger Nano S+ with the **7702 Unchained** app sideloaded via [ZKNOX orange](https://zknox.com/zknox-orange/sideloader), or rebuild from Ledger/ directory.
+- A Ledger Nano S+ with the **7702 Unchained** app sideloaded via [ZKNOX orange](https://zknox.com/zknox-orange/sideloader), or rebuild from the ledger/ directory in this repo.
 - No build step — everything loads from CDN (`esm.sh`)
 
 ## Tabs
