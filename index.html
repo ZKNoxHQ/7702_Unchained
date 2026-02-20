@@ -4,17 +4,56 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>7702 Unchained — ZKNOX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0f1117;--card:#1a1d27;--border:#2a2d3a;--text:#e1e4ea;--dim:#8b8fa3;--blue:#4f8ff7;--purple:#9b6dff;--green:#22c55e;--orange:#f59e0b;--red:#ef4444}
-body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,system-ui,sans-serif;padding:24px;max-width:760px;margin:0 auto}
+:root{--bg:#ffffff;--card:#f8f9fa;--border:#e2e8f0;--text:#1a1a2e;--dim:#4a5568;--blue:#4f8ff7;--purple:#9b6dff;--green:#22c55e;--orange:#f59e0b;--red:#ef4444}
+body{background:var(--bg);color:var(--text);font-family:'Source Sans 3',-apple-system,system-ui,sans-serif;padding:24px;padding-top:94px;max-width:760px;margin:0 auto;overflow-x:hidden}
+
+/* Navigation */
+.zk-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#0a0a0f;border-bottom:1px solid rgba(255,255,255,0.1)}
+.zk-nav .nav-container{max-width:1140px;margin:0 auto;padding:0 2rem;height:70px;display:flex;align-items:center;justify-content:space-between}
+.zk-nav .logo{display:flex;align-items:center;text-decoration:none}
+.zk-nav .logo img{height:48px;width:auto}
+.zk-nav .nav-links{display:flex;align-items:center;gap:0.25rem}
+.zk-nav .nav-link{color:#a78bfa;text-decoration:none;padding:0.5rem 1rem;font-size:0.95rem;font-weight:500;border-radius:6px;transition:all 0.2s ease}
+.zk-nav .nav-link:hover{color:#c4b5fd;background:rgba(167,139,250,0.1)}
+.zk-nav .nav-dropdown{position:relative}
+.zk-nav .nav-dropdown>.nav-link{display:flex;align-items:center;gap:0.35rem}
+.zk-nav .nav-dropdown>.nav-link::after{content:'';width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:4px solid currentColor;transition:transform 0.2s ease}
+.zk-nav .nav-dropdown:hover>.nav-link::after{transform:rotate(180deg)}
+.zk-nav .dropdown-menu{position:absolute;top:100%;left:0;min-width:200px;background:#1a1a25;border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:0.5rem;opacity:0;visibility:hidden;transform:translateY(10px);transition:all 0.2s ease;box-shadow:0 10px 40px rgba(0,0,0,0.3);z-index:1001}
+.zk-nav .nav-dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(5px)}
+.zk-nav .dropdown-item{display:block;padding:0.65rem 1rem;color:#9ca3af;text-decoration:none;font-size:0.9rem;border-radius:6px;transition:all 0.2s ease}
+.zk-nav .dropdown-item:hover{color:#a78bfa;background:rgba(167,139,250,0.1)}
+.zk-nav .nav-icon{display:flex;align-items:center;justify-content:center;width:36px;padding:0}
+.zk-nav .nav-icon svg{width:18px;height:18px}
+.zk-nav .github-btn{display:flex;align-items:center;gap:0.5rem;padding:0.5rem 1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#ffffff;text-decoration:none;font-size:0.9rem;font-weight:500;transition:all 0.2s ease}
+.zk-nav .github-btn:hover{background:rgba(255,255,255,0.1);border-color:#a78bfa}
+.zk-nav .github-btn svg{width:18px;height:18px}
+.zk-nav .mobile-menu-btn{display:none;flex-direction:column;gap:5px;padding:0.5rem;background:none;border:none;cursor:pointer}
+.zk-nav .mobile-menu-btn span{width:22px;height:2px;background:#ffffff;transition:all 0.3s ease}
+@media(max-width:768px){
+  .zk-nav .nav-links{display:none;position:absolute;top:70px;left:0;right:0;background:#0a0a0f;flex-direction:column;padding:1rem;border-bottom:1px solid rgba(255,255,255,0.1)}
+  .zk-nav .nav-links.active{display:flex}
+  .zk-nav .nav-link{width:100%;padding:0.75rem 1rem}
+  .zk-nav .dropdown-menu{position:static;opacity:1;visibility:visible;transform:none;background:transparent;border:none;box-shadow:none;padding-left:1rem}
+  .zk-nav .mobile-menu-btn{display:flex}
+  .zk-nav .github-btn{display:none}
+}
+/* Footer */
+.zk-footer{background:#0a0a0f;padding:2rem;text-align:center;border-top:1px solid rgba(167,139,250,0.2);margin-top:2rem;margin-left:calc(-50vw + 50%);margin-right:calc(-50vw + 50%);margin-bottom:-24px;padding-bottom:2rem}
+.zk-footer .footer-copy{color:#a78bfa;font-size:0.9rem}
+.zk-footer .footer-copy a{color:#ffffff;text-decoration:none;font-weight:600}
+.zk-footer .footer-copy a:hover{color:#c4b5fd}
 h1{font-size:28px;font-weight:600;margin-bottom:6px}
 .sub{color:var(--dim);font-size:15px;margin-bottom:20px;line-height:1.5}
 .header{display:flex;align-items:center;gap:16px;margin-bottom:6px}
-.header img{height:40px}
 .header h1{margin:0}
 .chain-bar{display:flex;gap:10px;align-items:center;margin-bottom:20px}
-.chain-bar select,.chain-bar input{background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 10px;border-radius:6px;font-size:13px}
+.chain-bar select,.chain-bar input{background:#fff;border:1px solid var(--border);color:var(--text);padding:6px 10px;border-radius:6px;font-size:13px}
 .chain-bar select{width:140px}.chain-bar input{flex:1}
 .hidden{display:none!important}
 .tabs{display:flex;gap:0;margin-bottom:20px;border-bottom:1px solid var(--border)}
@@ -26,7 +65,7 @@ h1{font-size:28px;font-weight:600;margin-bottom:6px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:14px}
 .card-title{font-size:14px;font-weight:600;margin-bottom:12px}
 label{display:block;font-size:12px;color:var(--dim);margin-bottom:4px}
-input[type="text"],input[type="password"],textarea{width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);padding:8px 10px;border-radius:6px;font-size:13px;font-family:monospace;outline:none}
+input[type="text"],input[type="password"],textarea{width:100%;background:#fff;border:1px solid var(--border);color:var(--text);padding:8px 10px;border-radius:6px;font-size:13px;font-family:monospace;outline:none}
 input:focus,textarea:focus{border-color:var(--blue)}
 textarea{height:64px;resize:vertical}
 .mt-12{margin-top:12px}
@@ -46,21 +85,104 @@ textarea{height:64px;resize:vertical}
 .badge-green{background:#16a34a22;color:var(--green)}.badge-orange{background:#f59e0b22;color:var(--orange)}
 .badge-purple{background:#9b6dff22;color:var(--purple)}
 .delegation-target{font-family:monospace;font-size:11px;margin-top:2px;color:var(--dim)}
-.log{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:10px;font-family:monospace;font-size:11px;max-height:400px;overflow-y:auto;margin-top:12px;display:none}
-.log.visible{display:block}
+.log{background:#0a0a0f;border:1px solid rgba(167,139,250,0.2);border-radius:6px;padding:10px;font-family:monospace;font-size:11px;max-height:400px;overflow-y:auto;margin-top:12px;display:none}
+.log.visible{display:block;color:#9ca3af}
 .log .ok{color:var(--green)}.log .err{color:var(--red)}.log .warn{color:var(--orange)}
-.spinner{width:14px;height:14px;border:2px solid #fff3;border-top:2px solid #fff;border-radius:50%;animation:spin .6s linear infinite;display:inline-block}
+.spinner{width:14px;height:14px;border:2px solid rgba(255,255,255,0.3);border-top:2px solid #fff;border-radius:50%;animation:spin .6s linear infinite;display:inline-block}
 @keyframes spin{to{transform:rotate(360deg)}}
 #loading-msg{text-align:center;color:var(--dim);padding:40px;font-size:13px}
 </style>
 </head>
 <body>
 
+<!-- Navigation -->
+<nav class="zk-nav">
+    <div class="nav-container">
+        <a href="https://zknox.com" class="logo"><img src="https://zknox.com/zknox-logo.png" alt="ZKNOX"></a>
+        
+        <div class="nav-links">
+            <a href="https://zknox.com" class="nav-link">Home</a>
+            
+            <div class="nav-dropdown">
+                <a href="https://zknox.com/technologies.html" class="nav-link">Technologies</a>
+                <div class="dropdown-menu">
+                    <a href="https://zknox.com/tech-ecc.html" class="dropdown-item">Elliptic Curves</a>
+                    <a href="https://zknox.com/tech-hw.html" class="dropdown-item">Hardware Wallets</a>
+                    <a href="https://zknox.com/tech-mpc.html" class="dropdown-item">MPC</a>
+                    <a href="https://zknox.com/tech-pqc.html" class="dropdown-item">Post-Quantum Cryptography</a>
+                    <a href="https://zknox.com/tech-zk.html" class="dropdown-item">Zero Knowledge</a>
+                </div>
+            </div>
+            
+            <div class="nav-dropdown">
+                <a href="https://zknox.com/products.html" class="nav-link">Products</a>
+                <div class="dropdown-menu">
+                    <a href="https://zknox.com/products.html#libraries" class="dropdown-item">Cryptographic Libraries</a>
+                    <a href="https://zknox.com/products.html#hardware" class="dropdown-item">Hardware Integration</a>
+                    <a href="https://zknox.com/products.html#contracts" class="dropdown-item">Smart Contracts</a>
+                    <a href="https://zknox.com/products.html#zk" class="dropdown-item">ZK Circuits</a>
+                </div>
+            </div>
+            
+            <div class="nav-dropdown">
+                <a href="https://zknox.com/tools.html" class="nav-link">Tools</a>
+                <div class="dropdown-menu">
+                    <a href="https://zknox.com/zknox-blue/official-apps" class="dropdown-item">ZKNOX Blue</a>
+                    <a href="https://zknox.com/zknox-orange/sideloader.html" class="dropdown-item">ZKNOX Orange</a>
+                    <a href="https://zknox.com/7702_Unchained/index.html" class="dropdown-item">ZKNOX 7702 Delegator</a>
+                    <a href="https://zknox.com/demo-pqbip39.html" class="dropdown-item">PQBIP39</a>
+                    <a href="https://zknox.com/demo-zk-hardware.html" class="dropdown-item">ZK-Hardware</a>
+                </div>
+            </div>
+            
+            <div class="nav-dropdown">
+                <a href="https://zknox.com/research.html" class="nav-link">Research</a>
+                <div class="dropdown-menu">
+                    <a href="https://zknox.com/blog.html" class="dropdown-item">Blog</a>
+                    <a href="https://zknox.com/eips.html" class="dropdown-item">EIPs</a>
+                    <a href="https://zknox.com/hackathons.html" class="dropdown-item">Hackathons</a>
+                    <a href="https://zknox.com/papers.html" class="dropdown-item">Papers</a>
+                    <a href="https://zknox.com/talks.html" class="dropdown-item">Talks</a>
+                </div>
+            </div>
+            
+            <div class="nav-dropdown">
+                <a href="https://zknox.com/services.html" class="nav-link">Services</a>
+                <div class="dropdown-menu">
+                    <a href="https://zknox.com/services.html#audits" class="dropdown-item">Audits</a>
+                    <a href="https://zknox.com/services.html#design" class="dropdown-item">Design</a>
+                    <a href="https://zknox.com/services.html#hardware" class="dropdown-item">Hardware Integration</a>
+                    <a href="https://zknox.com/services.html#implementation" class="dropdown-item">Implementation</a>
+                </div>
+            </div>
+            
+            <a href="https://zknox.com/team.html" class="nav-link">Team</a>
+            <a href="https://x.com/zknoxHQ" class="nav-link nav-icon" target="_blank" title="X/Twitter">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+            </a>
+        </div>
+
+        <a href="https://github.com/ZKNoxHQ" class="github-btn" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            GitHub
+        </a>
+
+        <button class="mobile-menu-btn" onclick="document.querySelector('.zk-nav .nav-links').classList.toggle('active')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</nav>
+
 <div class="header">
-  <img src="zknox-logo.png" alt="ZKNOX" />
-  <h1>7702 Unchained</h1>
+  <h1 style="font-size:36px">7702 Unchained</h1>
 </div>
-<p class="sub">Sign &amp; broadcast EIP-7702 delegation transactions — mnemonic or Ledger<br/>Sideload <strong>7702 Unchained</strong> from <a href="https://zknox.com/zknox-orange/sideloader" target="_blank" style="color:var(--orange);text-decoration:underline;font-weight:600">ZKNOX orange</a></p>
+<p class="sub" style="margin-bottom:28px">Sign &amp; broadcast EIP-7702 delegation transactions — mnemonic or Ledger<br/>Sideload <strong>7702 Unchained</strong> from <a href="https://zknox.com/zknox-orange/sideloader.html" target="_blank" style="color:var(--orange);text-decoration:underline;font-weight:600;font-size:17px">ZKNOX orange</a></p>
 
 <div class="chain-bar">
   <select id="chain-select">
@@ -608,5 +730,10 @@ $btnLOR.addEventListener("click",async()=>{if(!confirm("Revoke?"))return;$btnLOR
   finally{$btnLOR.disabled=false;$btnLOR.textContent="Revoke Delegation";}
 });
 </script>
+
+<footer class="zk-footer">
+    <p class="footer-copy">Copyright &copy; 2025 <a href="https://zknox.com">ZKNOX</a> All rights reserved.</p>
+</footer>
+
 </body>
 </html>
