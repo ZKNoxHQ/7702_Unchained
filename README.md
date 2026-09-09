@@ -4,18 +4,27 @@ Sign & broadcast EIP-7702 delegation transactions from your browser with a mnemo
 
 Built by [ZKNOX](https://zknox.com).
 
+The **page lives in the [website repo](https://github.com/ZKNoxHQ/website)** as
+`unchained.html`, so it shares the site's `styles.css` and `nav.js` instead of
+carrying its own copy of the navigation. This repo holds the Ledger app source
+(`ledger/`) and the assets; it is cloned into the website as `7702_Unchained/`.
+
 ## Quick Start
 
+Serve the website checkout (with this repo cloned inside it as `7702_Unchained/`):
+
 ```bash
+cd /path/to/website
 npx serve .
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in Chrome.
+Open [http://localhost:3000/unchained.html](http://localhost:3000/unchained.html) in Chrome.
+It must be served over HTTP — `file://` breaks the root-relative `/nav.js`.
 
 ## Requirements
 
 - **Chrome** (WebHID support required for Ledger tabs)
-- A Ledger Nano S+ with the **7702 Unchained** app sideloaded via [ZKNOX orange](https://zknox.com/zknox-orange/sideloader), or rebuild from the ledger/ directory in this repo.
+- A Ledger Nano S+ with the **7702 Unchained** app sideloaded via [ZKNOX orange](https://zknox.com/sideloader.html), or rebuild from the ledger/ directory in this repo.
 - No build step — everything loads from CDN (`esm.sh`)
 
 ## Tabs
@@ -48,8 +57,11 @@ Sepolia, Holesky, Mainnet, or custom RPC.
 ## Files
 
 ```
-index.html      — Self-contained app (HTML + JS, no build)
+ledger/         — Ledger app source (the on-device 7702 Unchained app)
 zknox-logo.png  — ZKNOX logo
+
+website/
+└── unchained.html  — The app itself (HTML + JS, no build)
 ```
 
 ## License
